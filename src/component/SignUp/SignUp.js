@@ -61,6 +61,49 @@ const SignUp = ({ values, loading, error, isSubmitting }) => {
           </Typography>
           <em><p>Create an account:</p></em>
           <Form className={classes.form} noValidate>
+          <Field className='signup-input'
+              component={TextField}
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              name="firstname"
+              label="Firstname"
+              id="firstname"
+              InputProps={{
+                classes: { notchedOutline: classes.input },
+                className: classes.input
+              }}
+              InputLabelProps={{ className: classes.input }}
+              />
+              <Field className='signup-input'
+              component={TextField}
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              name="lastname"
+              label="Lastname"
+              id="lastname"
+              InputProps={{
+                classes: { notchedOutline: classes.input },
+                className: classes.input
+              }}
+              InputLabelProps={{ className: classes.input }}
+              />
+              <Field className='signup-input'
+              component={TextField}
+              type="email"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              name="email"
+              label="Email"
+              id="email"
+              InputProps={{
+                classes: { notchedOutline: classes.input },
+                className: classes.input
+              }}
+              InputLabelProps={{ className: classes.input }}
+              />
             <Field className='signup-input'
               component={TextField}
               variant="outlined"
@@ -76,11 +119,11 @@ const SignUp = ({ values, loading, error, isSubmitting }) => {
               }}
               InputLabelProps={{ className: classes.input }}
               />
-            <Field className='signup-input'
+
+              <Field className='signup-input'
               component={TextField}
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               name="password"
               label="Password"
@@ -94,16 +137,22 @@ const SignUp = ({ values, loading, error, isSubmitting }) => {
               InputLabelProps={{ className: classes.input }}
               />
 
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-
-            </MuiPickersUtilsProvider>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}></MuiPickersUtilsProvider>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               className={classes.submit}
               disabled={loading}
-              >Sign Up
+              >
+              {!loading 
+                ? 'Sign Up' 
+                : <Loader
+                    type="ThreeDots"
+                    color="white"
+                    height={15}
+                    width={50}
+                  />}
             </Button>
             <Grid container>
                 <Link to="/" className="sign-up-link">
@@ -120,16 +169,22 @@ const SignUp = ({ values, loading, error, isSubmitting }) => {
 };
 const FormikSignUp = withFormik({
 
-  mapPropsToValues({ username, password }) {
+  mapPropsToValues({ username, password, firstname, lastname, email }) {
     return {
       username: username || "",
       password: password || "",
+      firstname: firstname || "",
+      lastname: lastname || "",
+      email: email || ""
     };
   },
 
   validationSchema: Yup.object().shape({
     username: Yup.string().required("Username is required"),
     password: Yup.string().required('Password is required'),
+    firstname: Yup.string().required('First name is required'),
+    lastname: Yup.string().required('Last name is required'),
+    email: Yup.string().required('Email is required'),
   }),
 
   //You can use this to see the values

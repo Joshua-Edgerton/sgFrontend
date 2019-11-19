@@ -10,8 +10,5 @@ export {
     FETCH_START,
     FETCH_SUCCESS,
     FETCH_FAILURE,
-    fetchProfile,
-    EDITING_START,
-    EDITING_SUCCESS,
-    EDITNG_FAILURE
+    fetchProfile
  } from "./userActions"
