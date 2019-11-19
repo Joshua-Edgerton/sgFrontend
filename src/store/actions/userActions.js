@@ -47,14 +47,3 @@ export const register = credentials => dispatch => {
         .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err.response }))
 }
 
-// Edit's the user's weight && goal
-// Passes entire user object as payload
-export const EDITING_START = "EDITING_START"
-export const EDITING_SUCCESS = "EDITING_SUCCESS"
-export const EDITNG_FAILURE = "EDITNG_FAILURE"
-export const editGoals = newGoals => dispatch => {
-    dispatch({ type: EDITING_START })
-    axiosWithAuth().put("/users/profile", newGoals)
-        .then(res => dispatch({ type: EDITING_SUCCESS, payload: res.data }))
-        .catch(err => dispatch({ type: EDITNG_FAILURE, payload: err.response}))
-}
