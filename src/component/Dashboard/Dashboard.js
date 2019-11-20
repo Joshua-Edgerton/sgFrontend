@@ -4,6 +4,8 @@ import { connect } from "react-redux"
 import { fetchProfile } from "../../store/actions"
 import HeaderLayout from "../HeaderLayout/HeaderLayout"
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import RadarChart from "../Radar/RadarChart"
+import Form from "../Radar/Form"
 
 const Dashboard = ({ 
     currentUser,
@@ -38,6 +40,7 @@ const Dashboard = ({
         <div className="data-display-containers">
                 <div className ="box">
                 <h3>Business Graph</h3>
+                <RadarChart />
                 </div>
             </div>
         </div>
